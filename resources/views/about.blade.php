@@ -12,7 +12,7 @@
     <link href="{{asset('/')}}assets2/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
     <link href="{{asset('/')}}assets2/css/flexslider.css" rel="stylesheet">
     <link href="{{asset('/')}}assets2/css/templatemo-style.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
 </head>
@@ -87,10 +87,10 @@
                         <h3 class="slider-subtitle">Bir Tıkla Yol Arkadaşınızı Bulun, Harika Bir Yolculuk Deneyimi Yaşayın</h3>
                         <p class="slider-description">BenleGez, seyahat etmeyi sevenlerin bir araya geldiği, güvenilir ve ekonomik bir platformdur. Bu inovatif hizmet, boş koltukları değerlendirerek kullanıcıları birbirleriyle buluşturur ve seyahat masraflarını önemli ölçüde azaltır. Hem sürücüler için ek gelir sağlayan hem de yolculara uygun fiyatlar sunan BlaBlaCar, sosyal bir seyahat deneyimi sunmanın yanı sıra yeni insanlarla tanışma ve paylaşılan yolculuklarda keyifli anılar biriktirme imkanı da sunar. Aynı zamanda çevre dostu bir seçenek olmasıyla da öne çıkan BlaBlaCar, trafik ve karbon salınımını azaltarak sürdürülebilir bir ulaşım alternatifi sunar.</p>
                         <div class="slider-social">
-                            <a href="#" class="tm-social-icon"><i class="fa fa-twitter"></i></a>
-                            <a href="#" class="tm-social-icon"><i class="fa fa-facebook"></i></a>
-                            <a href="#" class="tm-social-icon"><i class="fa fa-pinterest"></i></a>
-                            <a href="#" class="tm-social-icon"><i class="fa fa-google-plus"></i></a>
+                            <a href="#" class="tm-social-icon"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#" class="tm-social-icon"><i class="fa-brands fa-facebook"></i></a>
+                            <a href="#" class="tm-social-icon"><i class="fa-brands fa-pinterest"></i></a>
+                            <a href="#" class="tm-social-icon"><i class="fa-brands fa-instagram"></i></a>
                         </div>
                     </div>
                 </li>
@@ -102,10 +102,10 @@
                         <p class="slider-description">BenleGez, seyahat tutkunlarının ihtiyaçlarına odaklanarak seyahat etmeyi daha erişilebilir hale getirir. Platform, kullanıcıların güvenli ve rahat bir şekilde seyahat etmelerini sağlamak için kapsamlı bir kullanıcı değerlendirme ve doğrulama sistemi kullanır. Böylece, kullanıcılar yolculuklarında kendilerini güvende hissederler.
                             BenleGez, seyahat planlamasını kolaylaştıran ve esnekliği artıran birçok özellik sunar. Kullanıcılar, seyahat tarihlerini, güzergahlarını ve tercih ettikleri yol arkadaşlarını belirleyerek arama yapabilirler. Ayrıca, sürücülerin ve yolcuların profil sayfalarındaki değerlendirmeleri ve yorumları inceleyerek daha bilinçli seçimler yapabilirler.</p>
                         <div class="slider-social">
-                            <a href="#" class="tm-social-icon"><i class="fa fa-twitter"></i></a>
-                            <a href="#" class="tm-social-icon"><i class="fa fa-facebook"></i></a>
-                            <a href="#" class="tm-social-icon"><i class="fa fa-pinterest"></i></a>
-                            <a href="#" class="tm-social-icon"><i class="fa fa-google-plus"></i></a>
+                            <a href="#" class="tm-social-icon"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#" class="tm-social-icon"><i class="fa-brands fa-facebook"></i></a>
+                            <a href="#" class="tm-social-icon"><i class="fa-brands fa-pinterest"></i></a>
+                            <a href="#" class="tm-social-icon"><i class="fa-brands fa-instagram"></i></a>
                         </div>
                     </div>
                 </li>
@@ -118,10 +118,10 @@
 
                             BenleGez'in çevre dostu yaklaşımı, sürdürülebilir bir gelecek için önemli bir adımdır. Araç paylaşımı, trafiği azaltır ve karbon salınımını düşürerek çevrenin korunmasına katkıda bulunur. Bu da hem şehir içi hem de uzun mesafe seyahatlerinde çevre bilincine sahip kullanıcılar için önemli bir avantaj sağlar.</p>
                         <div class="slider-social">
-                            <a href="#" class="tm-social-icon"><i class="fa fa-twitter"></i></a>
-                            <a href="#" class="tm-social-icon"><i class="fa fa-facebook"></i></a>
-                            <a href="#" class="tm-social-icon"><i class="fa fa-pinterest"></i></a>
-                            <a href="#" class="tm-social-icon"><i class="fa fa-google-plus"></i></a>
+                            <a href="#" class="tm-social-icon"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#" class="tm-social-icon"><i class="fa-brands fa-facebook"></i></a>
+                            <a href="#" class="tm-social-icon"><i class="fa-brands fa-pinterest"></i></a>
+                            <a href="#" class="tm-social-icon"><i class="fa-brands fa-instagram"></i></a>
                         </div>
                     </div>
                 </li>
@@ -141,13 +141,12 @@
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <div class="tm-about-box-1">
                     <a href="#"><img src="{{asset('/')}}assets2/img/about-4.jpg" alt="img" class="tm-about-box-1-img"></a>
-                    <h3 class="tm-about-box-1-title">Ömer Faruk Dİnler <br> <span>Grup Yöneticisi</span></h3>
+                    <h3 class="tm-about-box-1-title">Ömer Faruk Dinler <br> <span>Grup Yöneticisi</span></h3>
                     <p class="margin-bottom-15 gray-text">210290008</p>
                     <div class="gray-text">
-                        <a href="#" class="tm-social-icon"><i class="fa fa-twitter"></i></a>
-                        <a href="#" class="tm-social-icon"><i class="fa fa-facebook"></i></a>
-                        <a href="#" class="tm-social-icon"><i class="fa fa-pinterest"></i></a>
-                        <a href="#" class="tm-social-icon"><i class="fa fa-google-plus"></i></a>
+                        <a href="https://www.linkedin.com/in/omerfarukdinler/" class="tm-social-icon" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="https://www.instagram.com/ofd.10/" class="tm-social-icon" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://github.com/ofd10" class="tm-social-icon" target="_blank"><i class="fa-brands fa-github"></i></a>
                     </div>
                 </div>
             </div>
@@ -157,23 +156,21 @@
                     <h3 class="tm-about-box-1-title">Uğur Ataç <br><span>Grup Üyesi</span></h3>
                     <p class="margin-bottom-15 gray-text">200290050</p>
                     <div class="gray-text">
-                        <a href="#" class="tm-social-icon"><i class="fa fa-twitter"></i></a>
-                        <a href="#" class="tm-social-icon"><i class="fa fa-facebook"></i></a>
-                        <a href="#" class="tm-social-icon"><i class="fa fa-pinterest"></i></a>
-                        <a href="#" class="tm-social-icon"><i class="fa fa-google-plus"></i></a>
+                        <a href="https://www.linkedin.com/in/uğur-ataç-1ab0b4238/" class="tm-social-icon" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="https://www.instagram.com/uur873/" class="tm-social-icon" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://github.com/Uguratac" class="tm-social-icon" target="_blank"><i class="fa-brands fa-github"></i></a>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <div class="tm-about-box-1">
                     <a href="#"><img src="{{asset('/')}}assets2/img/about-6.jpg" alt="img" class="tm-about-box-1-img"></a>
-                    <h3 class="tm-about-box-1-title">Muhammet Emİn Çelebİ <br><span>Grup Üyesi</span></h3>
+                    <h3 class="tm-about-box-1-title">Muhammet Emin Çelebi <br><span>Grup Üyesi</span></h3>
                     <p class="margin-bottom-15 gray-text">210290006</p>
                     <div class="gray-text">
-                        <a href="#" class="tm-social-icon"><i class="fa fa-twitter"></i></a>
-                        <a href="#" class="tm-social-icon"><i class="fa fa-facebook"></i></a>
-                        <a href="#" class="tm-social-icon"><i class="fa fa-pinterest"></i></a>
-                        <a href="#" class="tm-social-icon"><i class="fa fa-google-plus"></i></a>
+                        <a href="https://www.linkedin.com/in/muhammet-emin-çelebi-631960233/" class="tm-social-icon" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="https://www.instagram.com/emincelebi61/" class="tm-social-icon" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://github.com/emincelebi" class="tm-social-icon" target="_blank"><i class="fa-brands fa-github"></i></a>
                     </div>
                 </div>
             </div>
@@ -200,7 +197,6 @@
                         <div class="tm-about-box-2-text">
                             <h3 class="tm-about-box-2-title">Laravel 9 Kullanarak proje gelişiyoruz</h3>
                             <p class="tm-about-box-2-description gray-text">Biz Fırat Üniversitesi Yazılım Mühendisliği  Bölümü 2.sınıf öğrencileriyiz. Web Tasarım ve Programlama dersi projesi olarak BenleGez'i  sunmaktan gurur duyarız.</p>
-
                         </div>
                     </div>
                     <div class="tm-about-box-2">

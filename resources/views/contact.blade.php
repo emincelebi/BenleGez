@@ -12,7 +12,7 @@
     <link href="{{asset('/')}}assets2/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
     <link href="{{asset('/')}}assets2/css/flexslider.css" rel="stylesheet">
     <link href="{{asset('/')}}assets2/css/templatemo-style.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 <body>
@@ -72,10 +72,10 @@
 
                             Eğer herhangi bir sorunuz, öneriniz veya yardım ihtiyacınız varsa, aşağıda belirtilen iletişim formunu doldurun.</p>
                         <div class="slider-social">
-                            <a href="#" class="tm-social-icon"><i class="fa fa-twitter"></i></a>
-                            <a href="#" class="tm-social-icon"><i class="fa fa-facebook"></i></a>
-                            <a href="#" class="tm-social-icon"><i class="fa fa-pinterest"></i></a>
-                            <a href="#" class="tm-social-icon"><i class="fa fa-google-plus"></i></a>
+                            <a href="#" class="tm-social-icon"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#" class="tm-social-icon"><i class="fa-brands fa-facebook"></i></a>
+                            <a href="#" class="tm-social-icon"><i class="fa-brands fa-pinterest"></i></a>
+                            <a href="#" class="tm-social-icon"><i class="fa-brands fa-instagram"></i></a>
                         </div>
                     </div>
                 </li>
@@ -96,19 +96,20 @@
         </div>
         <div class="row">
             <!-- contact form -->
-            <form action="#" method="post" class="tm-contact-form">
+            <form action="{{'contact'}}" method="post" class="tm-contact-form">
+                @csrf
                 <div class="col-lg-12 col-md-12 tm-contact-form-input">
                     <div class="form-group">
-                        <input type="text" id="contact_name" class="form-control" placeholder="AD" />
+                        <input type="text" id="contact_name" class="form-control" name="name" placeholder="AD" />
                     </div>
                     <div class="form-group">
-                        <input type="email" id="contact_email" class="form-control" placeholder="EMAIL" />
+                        <input type="email" id="contact_email" class="form-control" name="email" placeholder="EMAIL" />
                     </div>
                     <div class="form-group">
-                        <input type="text" id="contact_subject" class="form-control" placeholder="KONU" />
+                        <input type="text" id="contact_subject" class="form-control" name="subject" placeholder="KONU" />
                     </div>
                     <div class="form-group">
-                        <textarea id="contact_message" class="form-control" rows="6" placeholder="MESAJ"></textarea>
+                        <textarea id="contact_message" class="form-control" rows="6" name="message" placeholder="MESAJ"></textarea>
                     </div>
                     <div class="form-group">
                         <button class="tm-submit-btn" type="submit" name="submit">Gönder</button>
