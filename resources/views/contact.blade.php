@@ -32,7 +32,7 @@
                         <li><a href="{{'home'}}">Anasayfa</a></li>
                         <li><a href="{{'about'}}">Hakkımızda</a></li>
                         <li><a href="{{'contact'}}" class="active">İLETİŞİM</a></li>
-                        <li><a href="{{'login'}}">Hesabım</a></li>
+                        <li><a href="{{'account'}}">Hesabım</a></li>
                     </ul>
                 </nav>
             </div>

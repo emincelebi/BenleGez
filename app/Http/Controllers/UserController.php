@@ -10,8 +10,13 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::all();
-        return view('users.index', compact('users'));
+        if (Auth::check()) {
+            $user = Auth::user();
+
+            return view('account', compact('user'));
+        } else {
+            return redirect('/');
+        }
     }
 
     public function create()
@@ -23,6 +28,8 @@ class UserController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required',
+            'surname'=>'required',
+            'nickname'=>'required',
             'email' => 'required|email',
             'password' => 'required|min:8',
             'gender' => 'required'
@@ -30,6 +37,8 @@ class UserController extends Controller
 
         $user = User::create([
             'name' => $validatedData['name'],
+            'surname'=>$validatedData['surname'],
+            'nickname'=>$validatedData['nickname'],
             'email' => $validatedData['email'],
             'password' => bcrypt($validatedData['password']),
             'gender' => $validatedData['gender']
@@ -41,7 +50,7 @@ class UserController extends Controller
 
     public function login(Request $request)
     {
-        $credentials = $request->only('name', 'password');
+        $credentials = $request->only('nickname', 'password');
 
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
@@ -54,6 +63,13 @@ class UserController extends Controller
             return redirect()->back()->withInput()->withErrors(['name' => 'Geçersiz kullanıcı adı veya şifre']);
         }
     }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('users.login');
+    }
+
 }
 
 

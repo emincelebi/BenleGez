@@ -56,7 +56,7 @@
                 <div class="col-xs-12">
                     <div class="control-wrapper">
                         <label for="username" class="control-label fa-label"><i class="fa fa-user"></i></label>
-                        <input type="text" class="form-control" id="username" name="name" placeholder="Kullanıcı Adınız">
+                        <input type="text" class="form-control" id="username" name="nickname" placeholder="Kullanıcı Adınız">
                     </div>
                 </div>
             </div>

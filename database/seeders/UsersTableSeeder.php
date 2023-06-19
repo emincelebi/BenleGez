@@ -18,7 +18,9 @@ class UsersTableSeeder extends Seeder
 
         $users = [
             [
-                'name' => 'omerdinler',
+                'name' => 'Ömer Faruk',
+                'surname' => 'Dinler',
+                'nickname' => 'omerdinler',
                 'email' => 'ofd@example.com',
                 'password' => bcrypt('ofd123'),
                 'gender' => 'Erkek',
@@ -26,7 +28,9 @@ class UsersTableSeeder extends Seeder
 
             ],
             [
-                'name' => 'emincelebi',
+                'name' => 'Muhammet Emin',
+                'surname' => 'Çelebi',
+                'nickname' => 'emincelebi',
                 'email' => 'eminc1967@gmail.com',
                 'password' => bcrypt('emin123'),
                 'gender' => 'Erkek',
@@ -34,7 +38,9 @@ class UsersTableSeeder extends Seeder
 
             ],
             [
-                'name' => 'uguratac',
+                'name' => 'Uğur',
+                'surname' => 'Ataç',
+                'nickname' => 'uguratac',
                 'email' => 'ua@example.com',
                 'password' => bcrypt('ua123'),
                 'gender' => 'Erkek',

@@ -18,6 +18,14 @@ Route::get('/about', function () {
     return view('about');
 });
 
+Route::get('/account', function () {
+    return view('account');
+});
+
+Route::get('/addjourney', function () {
+    return view('addjourney');
+});
+
 
 Route::get('/register', [UserController::class, 'create'])->name('register');
 
@@ -41,6 +49,9 @@ Route::prefix('/auth')->group(function () {
         return view('auth.register');
     });
 });
+
+Route::get('user/logout', [UserController::class, 'logout'])->name('user.logout');
+
 
 Route::post('contact', [ContactsController::class, 'store'])->name('contacts.store');
 Route::post('register', [UserController::class, 'store'])->name('users.store');

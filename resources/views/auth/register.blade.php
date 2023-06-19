@@ -47,6 +47,16 @@
             @csrf
             <div class="form-inner">
                 <div class="form-group">
+                    <div class="col-md-6">
+                        <label for="name" class="control-label">İsim</label>
+                        <input id="name" type="text" class="form-control @error('email') is-invalid @enderror" name="name" autofocus>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="surname" class="control-label">Soyisim</label>
+                        <input id="surname" type="text" class="form-control @error('email') is-invalid @enderror" name="surname">
+                    </div>
+                </div>
+                <div class="form-group">
                     <div class="col-md-12">
                         <label for="email" class="control-label">Email</label>
                         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
@@ -60,8 +70,8 @@
                 <div class="form-group">
                     <div class="col-md-6">
                         <label for="name" class="control-label">Kullanıcı Adınız</label>
-                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-                        @error('name')
+                        <input id="name" type="text" class="form-control @error('nickname') is-invalid @enderror" name="nickname" value="{{ old('nickname') }}" required autocomplete="nickname">
+                        @error('nickname')
                         <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>

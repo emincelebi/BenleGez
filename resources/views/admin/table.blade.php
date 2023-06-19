@@ -32,7 +32,7 @@
         <div style="color: white;
 padding: 15px 50px 5px 50px;
 float: right;
-font-size: 16px;">&nbsp; <a href="{{'index'}}" class="btn btn-danger square-btn-adjust">Çıkış Yap</a> </div>
+font-size: 16px;">&nbsp; <a href="{{ route('user.logout') }}" class="btn btn-danger square-btn-adjust">ÇIKIŞ</a> </div>
     </nav>
     <!-- /. NAV TOP  -->
     <nav class="navbar-default navbar-side" role="navigation">
@@ -60,7 +60,7 @@ font-size: 16px;">&nbsp; <a href="{{'index'}}" class="btn btn-danger square-btn-
             <div class="row">
                 <div class="col-md-12">
                     <h2>Mesajlar</h2>
-                    <h5>Hoşgeldin Admin</h5>
+                    <h5>Hoşgeldin {{ auth()->user()->name }}</h5>
                     <br>
                     <br>
                     <table class="table">

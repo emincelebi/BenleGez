@@ -28,7 +28,7 @@
         <div style="color: white;
   padding: 15px 50px 5px 50px;
   float: right;
-  font-size: 16px;">&nbsp; <a href="{{'index'}}" class="btn btn-danger square-btn-adjust">Çıkış Yap</a> </div>
+  font-size: 16px;">&nbsp; <a href="{{ route('user.logout') }}" class="btn btn-danger square-btn-adjust">ÇIKIŞ</a> </div>
     </nav>
     <!-- /. NAV TOP  -->
     <nav class="navbar-default navbar-side" role="navigation">
@@ -63,7 +63,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <h2>Kullanıcı İşlemleri</h2>
-                    <h5>Hoşgeldin Admin </h5>
+                    <h5>Hoşgeldin {{ auth()->user()->name }} </h5>
                     <br>
                     <br>
                     <center>
@@ -78,7 +78,9 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Ad</th>
-                            <th scope="col">E-posta</th>
+                            <th scope="col">Soyad</th>
+                            <th scope="col">Kullanıcı Adı</th>
+                            <th scope="col">E-mail</th>
                             <th scope="col">Cinsiyet</th>
                         </tr>
                         </thead>
@@ -104,6 +106,8 @@
                                 echo "<tr>";
                                 echo "<th scope='row'>" . $user['id'] . "</th>";
                                 echo "<td>" . $user['name'] . "</td>";
+                                echo "<td>" . $user['surname'] . "</td>";
+                                echo "<td>" . $user['nickname'] . "</td>";
                                 echo "<td>" . $user['email'] . "</td>";
                                 echo "<td>" . $user['gender'] . "</td>";
                                 echo "</tr>";
