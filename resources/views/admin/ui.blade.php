@@ -80,7 +80,6 @@
                             <th scope="col">Ad</th>
                             <th scope="col">E-posta</th>
                             <th scope="col">Cinsiyet</th>
-                            <th scope="col">Şifre</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -107,7 +106,6 @@
                                 echo "<td>" . $user['name'] . "</td>";
                                 echo "<td>" . $user['email'] . "</td>";
                                 echo "<td>" . $user['gender'] . "</td>";
-                                echo "<td>" . $user['password'] . "</td>";
                                 echo "</tr>";
                             }
                         ?>

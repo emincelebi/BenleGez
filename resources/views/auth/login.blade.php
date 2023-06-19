@@ -27,20 +27,12 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md-4 col-sm-3 tm-site-name-container">
-                <a href="#" class="tm-site-name">BenleGez</a>
+                <a href="" class="tm-site-name">BenleGez</a>
             </div>
             <div class="col-lg-6 col-md-8 col-sm-9">
                 <div class="mobile-menu-icon">
                     <i class="fa fa-bars"></i>
                 </div>
-                <nav class="tm-nav">
-                    <ul>
-                        <li><a href="{{'home'}}">Anasayfa</a></li>
-                        <li><a href="{{'about'}}" >Hakkımızda</a></li>
-                        <li><a href="{{'contact'}}">İLETİŞİM</a></li>
-                        <li><a href="{{'login'}}"class="active">Hesabım</a></li>
-                    </ul>
-                </nav>
             </div>
         </div>
     </div>
@@ -58,12 +50,13 @@
     <br>
     <br>
     <div class="col-md-12">
-        <form class="form-horizontal templatemo-container templatemo-login-form-1 margin-bottom-30" role="form" action="{{'admin-panel'}}" method="post">
+        <form class="form-horizontal templatemo-container templatemo-login-form-1 margin-bottom-30" role="form" action="{{ route('users.login') }}" method="post">
+            @csrf
             <div class="form-group">
                 <div class="col-xs-12">
                     <div class="control-wrapper">
                         <label for="username" class="control-label fa-label"><i class="fa fa-user"></i></label>
-                        <input type="text" class="form-control" id="username" placeholder="Kullanıcı Adınız">
+                        <input type="text" class="form-control" id="username" name="name" placeholder="Kullanıcı Adınız">
                     </div>
                 </div>
             </div>
@@ -71,7 +64,7 @@
                 <div class="col-md-12">
                     <div class="control-wrapper">
                         <label for="password" class="control-label fa-label"><i class="fa fa-lock"></i></label>
-                        <input type="password" class="form-control" id="password" placeholder="Şifreniz">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Şifreniz">
                     </div>
                 </div>
             </div>
@@ -88,7 +81,6 @@
                 <div class="col-md-12">
                     <div class="control-wrapper">
                         <input type="submit" value="Giriş Yap" class="btn btn-info">
-
                     </div>
                 </div>
             </div>

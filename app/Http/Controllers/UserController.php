@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -15,7 +16,7 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('create-account');
+        return view('auth/register');
     }
 
     public function store(Request $request)
@@ -34,7 +35,24 @@ class UserController extends Controller
             'gender' => $validatedData['gender']
         ]);
 
-        return redirect('/create-account')->with('success', 'Yeni üye kaydedildi.');
+        return redirect('/register')->with('success', 'Yeni üye kaydedildi.');
+    }
+
+
+    public function login(Request $request)
+    {
+        $credentials = $request->only('name', 'password');
+
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+            if ($user->isAdmin()) {
+                return redirect()->route('admin.panel');
+            } else {
+                return redirect()->route('home');
+            }
+        } else {
+            return redirect()->back()->withInput()->withErrors(['name' => 'Geçersiz kullanıcı adı veya şifre']);
+        }
     }
 }
 

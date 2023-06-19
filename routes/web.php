@@ -3,13 +3,14 @@ use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
+
 Route::get('/', function () {
-    return view('menu');
+    return view('auth/login');
 });
 
 Route::get('/home', function(){
     return view('index');
-});
+})->name('home');
 
 Route::get('/contact', [ContactsController::class, 'create']);
 
@@ -17,9 +18,6 @@ Route::get('/about', function () {
     return view('about');
 });
 
-Route::get('/login', function () {
-    return view('login');
-});
 
 Route::get('/register', [UserController::class, 'create'])->name('register');
 
@@ -45,8 +43,6 @@ Route::prefix('/auth')->group(function () {
 });
 
 Route::post('contact', [ContactsController::class, 'store'])->name('contacts.store');
-Route::post('create-account', [UserController::class, 'store'])->name('users.store');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('register', [UserController::class, 'store'])->name('users.store');
+Route::post('auth/login', [UserController::class, 'login'])->name('users.login');
+Route::post('admin/panel')->name('admin.panel');

@@ -30,12 +30,7 @@
                     <i class="fa fa-bars"></i>
                 </div>
                 <nav class="tm-nav">
-                    <ul>
-                        <li><a href="{{ url('home') }}">Anasayfa</a></li>
-                        <li><a href="{{ url('about') }}">Hakkımızda</a></li>
-                        <li><a href="{{ url('contact') }}">İLETİŞİM</a></li>
-                        <li><a href="{{ url('login-1') }}" class="active">Hesabım</a></li>
-                    </ul>
+
                 </nav>
             </div>
         </div>
@@ -48,16 +43,6 @@
 <br>
 <div class="container">
     <div class="col-md-12">
-        <div class="error-messages">
-            @if($errors->any())
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            @endif
-        </div>
-
         <form class="form-horizontal templatemo-create-account templatemo-container" role="form" action="{{ route('users.store') }}" method="post">
             @csrf
             <div class="form-inner">
@@ -111,94 +96,12 @@
                 <div class="form-group">
                     <div class="col-md-12">
                         <input type="submit" value="Hesap Oluştur" class="btn btn-info">
-                        <a href="{{ url('login') }}" class="pull-right">Giriş Yap</a>
+                        <a href="{{ url('auth/login') }}" class="pull-right">Giriş Yap</a>
                     </div>
                 </div>
             </div>
         </form>
     </div>
-</div>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<footer class="tm-black-bg">
-    <div class="container">
-        <div class="row">
-            <p class="tm-copyright-text">Copyright &copy; 2023 BenleGez</p>
-        </div>
-    </div>
-</footer>
-</body>
-</html>
-
-
-
-
-?>
-
-
-<form class="form-horizontal templatemo-create-account templatemo-container" role="form" action="{{ route('users.store') }}" method="post">
-    @csrf
-    <div class="form-inner">
-        <div class="form-group">
-            <div class="col-md-12">
-                <label for="email" class="control-label">Email</label>
-                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-                @error('email')
-                <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                @enderror
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-6">
-                <label for="name" class="control-label">Kullanıcı Adınız</label>
-                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-                @error('name')
-                <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                @enderror
-            </div>
-            <div class="col-md-6 templatemo-radio-group">
-                <label class="radio-inline">
-                    <input type="radio" name="gender" id="optionsRadios1" value="Erkek"> Erkek
-                </label>
-                <label class="radio-inline">
-                    <input type="radio" name="gender" id="optionsRadios2" value="Kadın"> Kadın
-                </label>
-                @error('gender')
-                <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                @enderror
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-6">
-                <label for="password" class="control-label">Şifreniz</label>
-                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-                @error('password')
-                <span class="invalid-feedback" role="alert">
-                             <strong>{{ $message }}</strong>
-                        </span>
-                @enderror
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-12">
-                <input type="submit" value="Hesap Oluştur" class="btn btn-info">
-                <a href="{{ url('login')}}" class="pull-right">Giriş Yap</a>
-            </div>
-        </div>
-    </div>
-</form>
-</div>
 </div>
 <br>
 <br>

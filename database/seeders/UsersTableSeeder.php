@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -17,32 +18,37 @@ class UsersTableSeeder extends Seeder
 
         $users = [
             [
-                'name' => 'Ömer Faruk Dinler',
+                'name' => 'omerdinler',
                 'email' => 'ofd@example.com',
                 'password' => bcrypt('ofd123'),
                 'gender' => 'Erkek',
+                'role'=>'admin',
 
             ],
             [
-                'name' => 'Muhammet Emin Çelebi',
+                'name' => 'emincelebi',
                 'email' => 'eminc1967@gmail.com',
                 'password' => bcrypt('emin123'),
                 'gender' => 'Erkek',
+                'role'=>'admin',
 
             ],
             [
-                'name' => 'Uğur Ataç',
+                'name' => 'uguratac',
                 'email' => 'ua@example.com',
                 'password' => bcrypt('ua123'),
                 'gender' => 'Erkek',
+                'role'=>'admin',
 
             ],
         ];
+
 
         foreach ($users as $user) {
             if (!in_array($user['name'], $existingUsers)) {
                 DB::table('users')->insert($user);
             }
         }
+
     }
 }
