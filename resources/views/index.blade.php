@@ -29,10 +29,10 @@
                 </div>
                 <nav class="tm-nav">
                     <ul>
-                        <li><a href="{{'/'}}" class="active">Anasayfa</a></li>
+                        <li><a href="{{'home'}}" class="active">Anasayfa</a></li>
                         <li><a href="{{'about'}}">Hakkımızda</a></li>
                         <li><a href="{{'contact'}}">İLETİŞİM</a></li>
-                        <li><a href="{{'login-1'}}">Hesabım</a>
+                        <li><a href="{{'login'}}">Hesabım</a>
                     </ul>
                 </nav>
             </div>

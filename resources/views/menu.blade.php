@@ -34,12 +34,7 @@
                     <i class="fa fa-bars"></i>
                 </div>
                 <nav class="tm-nav">
-                    <ul>
-                        <li><a href="{{'/'}}">Anasayfa</a></li>
-                        <li><a href="{{'about'}}" >Hakkımızda</a></li>
-                        <li><a href="{{'contact'}}">İLETİŞİM</a></li>
-                        <li><a href="{{'login-1'}}"class="active">Hesabım</a></li>
-                    </ul>
+
                 </nav>
             </div>
         </div>
@@ -94,7 +89,7 @@
             </div>
         </form>
         <div class="text-center">
-            <a href="{{'create-account'}}" class="templatemo-create-new">Yeni Hesap Oluştur <i class="fa fa-arrow-circle-o-right"></i></a>
+            <a href="{{'register'}}" class="templatemo-create-new">Yeni Hesap Oluştur <i class="fa fa-arrow-circle-o-right"></i></a>
         </div>
     </div>
 </div>
@@ -118,3 +113,4 @@
 </footer>
 </body>
 </html>
+

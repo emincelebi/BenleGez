@@ -78,29 +78,39 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Ad</th>
-                            <th scope="col">Soyad</th>
-                            <th scope="col">Kullanıcı Adı</th>
+                            <th scope="col">E-posta</th>
+                            <th scope="col">Cinsiyet</th>
+                            <th scope="col">Şifre</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Ömer Faruk</td>
-                            <td>Dinler</td>
-                            <td>@ofd</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Muhammed Emin</td>
-                            <td>Çelebi</td>
-                            <td>@mec</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Uğur</td>
-                            <td>Ataç</td>
-                            <td>@ua</td>
-                        </tr>
+                        <?php
+
+                        $host = 'localhost';
+                        $dbname = 'benlegez';
+                        $username = 'root';
+                        $password = '';
+
+                        $dsn = "mysql:host=$host;dbname=$dbname;charset=utf8mb4";
+
+                            $db = new PDO($dsn, $username, $password);
+                            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                            $query = "SELECT * FROM users";
+                            $stmt = $db->prepare($query);
+                            $stmt->execute();
+                            $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                            foreach ($users as $user) {
+                                echo "<tr>";
+                                echo "<th scope='row'>" . $user['id'] . "</th>";
+                                echo "<td>" . $user['name'] . "</td>";
+                                echo "<td>" . $user['email'] . "</td>";
+                                echo "<td>" . $user['gender'] . "</td>";
+                                echo "<td>" . $user['password'] . "</td>";
+                                echo "</tr>";
+                            }
+                        ?>
                         </tbody>
                     </table>
                 </div>
