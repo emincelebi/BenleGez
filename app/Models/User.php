@@ -17,6 +17,7 @@ class User extends Authenticatable
         'password',
         'gender',
         'role',
+        'photo_path', // Yeni eklenen sütun
     ];
 
     protected $hidden = [
@@ -28,5 +29,5 @@ class User extends Authenticatable
         return $this->role === 'admin';
     }
 
-}
 
+}

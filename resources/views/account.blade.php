@@ -12,6 +12,34 @@
     <link href="{{ asset('/') }}assets2/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
     <link href="{{ asset('/') }}assets2/css/flexslider.css" rel="stylesheet">
     <link href="{{ asset('/') }}assets2/css/templatemo-style.css" rel="stylesheet">
+    <style>
+        .profile-image {
+            border-radius: 50%;
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+        }
+        .full-name {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .nickname {
+            font-size: 18px;
+        }
+    </style>
+    <script>
+        function deleteAccount() {
+
+            var confirmation = confirm("Hesabınızı silmek istediğinize emin misiniz?");
+
+            if (confirmation) {
+
+                window.location.href = '{{ route("delete-account") }}';
+            }
+        }
+    </script>
+
 </head>
 <body class="tm-gray-bg">
 <!-- Header -->
@@ -36,6 +64,8 @@
         </div>
     </div>
 </div>
+
+<!-- ... -->
 <br>
 <br>
 <center>
@@ -45,61 +75,54 @@
 <br>
 <br>
 <br>
+<div class="text-left">
+    <div class="full-name">{{ auth()->user()->name }} {{ auth()->user()->surname }}</div>
+    <div class="nickname">{{ auth()->user()->nickname }}</div>
+</div>
+<br>
+<br>
 <center>
-        <table class="table col-md-6">
-            <thead>
-            <tr>
-                <th scope="col">İsim</th>
-                <th>
-                    {{ auth()->user()->name }}
-                </th>
-            </tr>
-            <tr>
-                <th scope="col">Soyismim</th>
-                <th>
-                    {{ auth()->user()->surname }}
-                </th>
-            </tr>
-            <tr>
-                <th scope="col">Kullanıcı Adım</th>
-                <th>
-                    {{ auth()->user()->nickname }}
-                </th>
-            </tr>
-            <tr>
-                <th scope="col">E posta</th>
-                <th>
-                    {{ auth()->user()->email }}
-                </th>
-            </tr>
-            <tr>
-                <th scope="col">Şifre</th>
-                <th>
-                    *************
-                </th>
-            </tr>
-            <tr>
-                <th scope="col">Araç Markası</th>
-                <th>
-                    Mercedes
-                </th>
-            </tr>
-            <tr>
-                <th scope="col">Yaptığım Seyahat Sayısı</th>
-                <th>
-                    8
-                </th>
-            </tr>
-            </thead>
-        </table>
+    <table class="table col-md-6">
+        <thead>
+        <tr>
+            <th scope="col">E posta</th>
+            <th>
+                {{ auth()->user()->email }}
+            </th>
+        </tr>
+        <tr>
+            <th scope="col">Şifre</th>
+            <th>
+                *************
+            </th>
+        </tr>
+        <tr>
+            <th scope="col">Cinsiyet</th>
+            <th>
+                {{auth()->user()->gender}}
+            </th>
+        </tr>
+        <tr>
+            <th scope="col">Araç Markası</th>
+            <th>
+                {{auth()->user()->car ?? "-"}}
+            </th>
+        </tr>
+        <tr>
+            <th scope="col">Yaptığım Seyahat Sayısı</th>
+            <th>
+                {{auth()->user()->travelCount}}
+            </th>
+        </tr>
+        </thead>
+    </table>
 </center>
 <br>
 <br>
 <center>
     <button type="button" class="btn btn-danger"><a href="{{ route('user.logout') }}">ÇIKIŞ</a></button>
-    <button type="button" class="btn btn-success">Hesabı Düzenle</button>
-    <button type="button" class="btn btn-danger">Hesabı Sil</button>
-</center>
+    <button type="button" class="btn btn-success" onclick="location.href='{{ route('edit-account') }}'">Hesabı Düzenle</button>
+    <button type="button" class="btn btn-danger" onclick="deleteAccount()">Hesabı Sil</button></center>
 <br>
 <br>
 <br>

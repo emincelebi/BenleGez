@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class UserController extends Controller
 {
@@ -17,6 +19,15 @@ class UserController extends Controller
         } else {
             return redirect('/');
         }
+    }
+
+    public function deleteAccount()
+    {
+        $user = Auth::user();
+        $user->delete();
+        Auth::logout();
+
+        return redirect('/')->with('success', 'Hesabınız başarıyla silindi.');
     }
 
     public function create()
@@ -68,6 +79,23 @@ class UserController extends Controller
     {
         Auth::logout();
         return redirect()->route('users.login');
+    }
+
+    public function updateAccount(Request $request)
+    {
+        $user = auth()->user();
+
+        $user->name = $request->input('name');
+        $user->surname = $request->input('surname');
+        $user->nickname = $request->input('nickname');
+        $user->email = $request->input('email');
+        $user->password = bcrypt($request->input('password'));
+        $user->gender = $request->input('gender');
+        $user->car = $request->input('car');
+
+        $user->save();
+
+        return redirect()->route('account')->with('success', 'Hesap başarıyla güncellendi.');
     }
 
 }
