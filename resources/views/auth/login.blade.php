@@ -33,6 +33,13 @@
                 <div class="mobile-menu-icon">
                     <i class="fa fa-bars"></i>
                 </div>
+                <nav class="tm-nav">
+                    <ul>
+                        <li><a href="{{'../login-about'}}">Hakkımızda</a></li>
+                        <li><a href="{{'../login-contact'}}">İLETİŞİM</a></li>
+                        <li><a href="{{'/auth/login'}}" class="active">Giriş Yap</a></li>
+                    </ul>
+                </nav>
             </div>
         </div>
     </div>

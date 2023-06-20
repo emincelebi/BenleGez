@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ContactsController extends Controller
 {
@@ -14,6 +15,7 @@ class ContactsController extends Controller
 
         return view('admin.table', compact('contacts'));
     }
+
 
     public function create()
     {
@@ -38,6 +40,16 @@ class ContactsController extends Controller
         }
 
         return redirect('/')->with('success', 'Contact created successfully.');
+    }
+
+    public function getContactForm()
+    {
+        $user = Auth::user();
+
+        return view('contact', [
+            'name' => $user->name,
+            'email' => $user->email,
+        ]);
     }
 
 }
