@@ -27,7 +27,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md-4 col-sm-3 tm-site-name-container">
-                <a href="#" class="tm-site-name">BenleGez</a>
+                <a href="" class="tm-site-name">BenleGez</a>
             </div>
             <div class="col-lg-6 col-md-8 col-sm-9">
                 <div class="mobile-menu-icon">
@@ -35,10 +35,9 @@
                 </div>
                 <nav class="tm-nav">
                     <ul>
-                        <li><a href="{{'/'}}">Anasayfa</a></li>
-                        <li><a href="{{'about'}}" >Hakkımızda</a></li>
-                        <li><a href="{{'contact'}}">İLETİŞİM</a></li>
-                        <li><a href="{{'login-1'}}"class="active">Hesabım</a></li>
+                        <li><a href="{{'../login-about'}}">Hakkımızda</a></li>
+                        <li><a href="{{'../login-contact'}}">İLETİŞİM</a></li>
+                        <li><a href="{{'/auth/login'}}" class="active">Giriş Yap</a></li>
                     </ul>
                 </nav>
             </div>
@@ -58,12 +57,13 @@
     <br>
     <br>
     <div class="col-md-12">
-        <form class="form-horizontal templatemo-container templatemo-login-form-1 margin-bottom-30" role="form" action="{{'admin-panel'}}" method="post">
+        <form class="form-horizontal templatemo-container templatemo-login-form-1 margin-bottom-30" role="form" action="{{ route('users.login') }}" method="post">
+            @csrf
             <div class="form-group">
                 <div class="col-xs-12">
                     <div class="control-wrapper">
                         <label for="username" class="control-label fa-label"><i class="fa fa-user"></i></label>
-                        <input type="text" class="form-control" id="username" placeholder="Kullanıcı Adınız">
+                        <input type="text" class="form-control" id="username" name="nickname" placeholder="Kullanıcı Adınız">
                     </div>
                 </div>
             </div>
@@ -71,7 +71,7 @@
                 <div class="col-md-12">
                     <div class="control-wrapper">
                         <label for="password" class="control-label fa-label"><i class="fa fa-lock"></i></label>
-                        <input type="password" class="form-control" id="password" placeholder="Şifreniz">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Şifreniz">
                     </div>
                 </div>
             </div>
@@ -88,13 +88,12 @@
                 <div class="col-md-12">
                     <div class="control-wrapper">
                         <input type="submit" value="Giriş Yap" class="btn btn-info">
-
                     </div>
                 </div>
             </div>
         </form>
         <div class="text-center">
-            <a href="{{'create-account'}}" class="templatemo-create-new">Yeni Hesap Oluştur <i class="fa fa-arrow-circle-o-right"></i></a>
+            <a href="{{'register'}}" class="templatemo-create-new">Yeni Hesap Oluştur <i class="fa fa-arrow-circle-o-right"></i></a>
         </div>
     </div>
 </div>

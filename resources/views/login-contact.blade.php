@@ -29,10 +29,9 @@
                 </div>
                 <nav class="tm-nav">
                     <ul>
-                        <li><a href="{{'home'}}">Anasayfa</a></li>
-                        <li><a href="{{'about'}}">Hakkımızda</a></li>
-                        <li><a href="{{'contact'}}" class="active">İLETİŞİM</a></li>
-                        <li><a href="{{'account'}}">Hesabım</a></li>
+                        <li><a href="{{'login-about'}}">Hakkımızda</a></li>
+                        <li><a href="{{'login-contact'}}" class="active">İLETİŞİM</a></li>
+                        <li><a href="{{'/auth/login'}}">Giriş Yap</a></li>
                     </ul>
                 </nav>
             </div>
@@ -96,14 +95,14 @@
         </div>
         <div class="row">
             <!-- contact form -->
-            <form action="{{route('contacts.store')}}" method="post" class="tm-contact-form">
+            <form action="{{'contact'}}" method="post" class="tm-contact-form">
                 @csrf
                 <div class="col-lg-12 col-md-12 tm-contact-form-input">
                     <div class="form-group">
-                        <input type="text" id="contact_name" class="form-control" name="name" value="{{ auth()->user()->name }}" placeholder="AD" />
+                        <input type="text" id="contact_name" class="form-control" name="name" placeholder="AD" />
                     </div>
                     <div class="form-group">
-                        <input type="email" id="contact_email" class="form-control" name="email" value="{{ auth()->user()->email }}" placeholder="EMAIL" />
+                        <input type="email" id="contact_email" class="form-control" name="email" placeholder="EMAIL" />
                     </div>
                     <div class="form-group">
                         <input type="text" id="contact_subject" class="form-control" name="subject" placeholder="KONU" />

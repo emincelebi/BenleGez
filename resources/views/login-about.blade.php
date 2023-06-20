@@ -30,10 +30,9 @@
                 </div>
                 <nav class="tm-nav">
                     <ul>
-                        <li><a href="{{'home'}}">Anasayfa</a></li>
-                        <li><a href="{{'about'}}" class="active">Hakkımızda</a></li>
-                        <li><a href="{{'contact'}}">İLETİŞİM</a></li>
-                        <li><a href="{{'account'}}">Hesabım</a></li>
+                        <li><a href="{{'login-about'}}" class="active">Hakkımızda</a></li>
+                        <li><a href="{{'login-contact'}}">İLETİŞİM</a></li>
+                        <li><a href="{{'/auth/login'}}">Giriş Yap</a></li>
                     </ul>
                 </nav>
             </div>

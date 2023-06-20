@@ -28,7 +28,7 @@
         <div style="color: white;
   padding: 15px 50px 5px 50px;
   float: right;
-  font-size: 16px;">&nbsp; <a href="{{'index'}}" class="btn btn-danger square-btn-adjust">Çıkış Yap</a> </div>
+  font-size: 16px;">&nbsp; <a href="{{ route('user.logout') }}" class="btn btn-danger square-btn-adjust">ÇIKIŞ</a> </div>
     </nav>
     <!-- /. NAV TOP  -->
     <nav class="navbar-default navbar-side" role="navigation">
@@ -63,7 +63,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <h2>Kullanıcı İşlemleri</h2>
-                    <h5>Hoşgeldin Admin </h5>
+                    <h5>Hoşgeldin {{ auth()->user()->name }} </h5>
                     <br>
                     <br>
                     <center>
@@ -80,27 +80,39 @@
                             <th scope="col">Ad</th>
                             <th scope="col">Soyad</th>
                             <th scope="col">Kullanıcı Adı</th>
+                            <th scope="col">E-mail</th>
+                            <th scope="col">Cinsiyet</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Ömer Faruk</td>
-                            <td>Dinler</td>
-                            <td>@ofd</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Muhammed Emin</td>
-                            <td>Çelebi</td>
-                            <td>@mec</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Uğur</td>
-                            <td>Ataç</td>
-                            <td>@ua</td>
-                        </tr>
+                        <?php
+
+                        $host = 'localhost';
+                        $dbname = 'benlegez';
+                        $username = 'root';
+                        $password = '';
+
+                        $dsn = "mysql:host=$host;dbname=$dbname;charset=utf8mb4";
+
+                            $db = new PDO($dsn, $username, $password);
+                            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                            $query = "SELECT * FROM users";
+                            $stmt = $db->prepare($query);
+                            $stmt->execute();
+                            $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                            foreach ($users as $user) {
+                                echo "<tr>";
+                                echo "<th scope='row'>" . $user['id'] . "</th>";
+                                echo "<td>" . $user['name'] . "</td>";
+                                echo "<td>" . $user['surname'] . "</td>";
+                                echo "<td>" . $user['nickname'] . "</td>";
+                                echo "<td>" . $user['email'] . "</td>";
+                                echo "<td>" . $user['gender'] . "</td>";
+                                echo "</tr>";
+                            }
+                        ?>
                         </tbody>
                     </table>
                 </div>

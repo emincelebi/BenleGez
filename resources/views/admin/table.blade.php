@@ -32,7 +32,7 @@
         <div style="color: white;
 padding: 15px 50px 5px 50px;
 float: right;
-font-size: 16px;">&nbsp; <a href="{{'index'}}" class="btn btn-danger square-btn-adjust">Çıkış Yap</a> </div>
+font-size: 16px;">&nbsp; <a href="{{ route('user.logout') }}" class="btn btn-danger square-btn-adjust">ÇIKIŞ</a> </div>
     </nav>
     <!-- /. NAV TOP  -->
     <nav class="navbar-default navbar-side" role="navigation">
@@ -60,7 +60,7 @@ font-size: 16px;">&nbsp; <a href="{{'index'}}" class="btn btn-danger square-btn-
             <div class="row">
                 <div class="col-md-12">
                     <h2>Mesajlar</h2>
-                    <h5>Hoşgeldin Admin</h5>
+                    <h5>Hoşgeldin {{ auth()->user()->name }}</h5>
                     <br>
                     <br>
                     <table class="table">
@@ -74,20 +74,33 @@ font-size: 16px;">&nbsp; <a href="{{'index'}}" class="btn btn-danger square-btn-
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Ahmet</td>
-                            <td>ahmd023@gmail.com</td>
-                            <td>seyahat</td>
-                            <td>istanbul -  Bingöl yolculuğunda hiçbi sorun yaşamadım teşekkürler BenleGez</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Ayşe</td>
-                            <td>ayse.a123@hotmail.com</td>
-                            <td>Ücret</td>
-                            <td>tahmin bile edemeyeceğim kadar uygun fiyata gittim iyi ki varsın BenleGez</td>
-                        </tr>
+                        <?php
+
+                        $servername = "localhost";
+                        $username = "root";
+                        $password = "";
+                        $dbname = "benlegez";
+
+                        $conn = new mysqli($servername, $username, $password, $dbname);
+
+                        $sql = "SELECT * FROM contacts";
+                        $result = $conn->query($sql);
+
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                echo "<tr>";
+                                echo "<th scope='row'>" . $row['id'] . "</th>";
+                                echo "<td>" . $row['name'] . "</td>";
+                                echo "<td>" . $row['email'] . "</td>";
+                                echo "<td>" . $row['subject'] . "</td>";
+                                echo "<td>" . $row['message'] . "</td>";
+                                echo "</tr>";
+                            }
+                        } else {
+                            echo "<tr><td colspan='5'>Hiç mesaj bulunamadı.</td></tr>";
+                        }
+                        $conn->close();
+                        ?>
                         </tbody>
                     </table>
                 </div>
