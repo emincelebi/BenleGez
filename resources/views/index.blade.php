@@ -12,6 +12,7 @@
     <link href="{{asset('/')}}assets2/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
     <link href="{{asset('/')}}assets2/css/flexslider.css" rel="stylesheet">
     <link href="{{asset('/')}}assets2/css/templatemo-style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
     <style>
         .table-container {
             background-color: #f5f5f5;
@@ -142,15 +143,17 @@
                     <div role="tabpanel" class="tab-pane fade in active tm-white-bg" id="hotel">
                         <div class="tm-search-box effect2">
                             <form action="{{ route('index.store') }}" method="post" class="hotel-search-form">
-                            <div class="tm-form-inner">
-                                <select id="city" name="fromwhere" class="form-control" required>
-                                    @foreach ($cities as $city)
-                                        <option value="{{ $city->name }}">{{ $city->name }}</option>
-                                    @endforeach
-                                </select>
-                                    <br>
-                                    <div class="form-group margin-bottom-0">
-                                        <select id="city" name="towhere" class="form-control" required>
+                                @csrf
+                                <div class="tm-form-inner">
+                                    <div class="form-group">
+                                        <select id="fromwhere" name="fromwhere" class="form-control" required>
+                                            @foreach ($cities as $city)
+                                                <option value="{{ $city->name }}">{{ $city->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <select id="towhere" name="towhere" class="form-control" required>
                                             @foreach ($cities as $city)
                                                 <option value="{{ $city->name }}">{{ $city->name }}</option>
                                             @endforeach
@@ -158,17 +161,18 @@
                                     </div>
                                     <div class="form-group">
                                         <div class='input-group date' id='datetimepicker1'>
-                                            <input type='text' class="form-control" id="departureDate" placeholder="Gidiş Tarihi" />
+                                            <input type='text' class="form-control" id="departureDate" name="departureDate" placeholder="Gidiş Tarihi" />
                                             <span class="input-group-addon">
-							                        <span class="fa fa-calendar"></span>
-							                    </span>
+                                                <span class="fa fa-calendar"></span>
+                                                </span>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="form-group tm-yellow-gradient-bg text-center">
-                                    <button type="submit" name="submit" class="tm-yellow-btn">Yolculuk Ara</button>
+                                    <div class="form-group tm-yellow-gradient-bg text-center">
+                                        <button type="submit" name="submit" class="tm-yellow-btn">Yolculuk Ara</button>
+                                    </div>
                                 </div>
                             </form>
+
                         </div>
                     </div>
 
@@ -201,26 +205,147 @@
                 echo "<p>" . $row['when'] . "</p>";
                 echo "</div>";
                 echo "<div class='table-cell'>";
-                echo "<p>" . $row['car'] . "</p>";
+                echo "<p><i class='fas fa-car'></i> " . $row['car'] . " </p>";
                 echo "</div>";
                 echo "<div class='table-cell'>";
-                echo "<p>" . $row['price'] . "</p>";
+                echo "<p>" . $row['price'] . "$</p>";
                 echo "</div>";
                 echo "<div class='table-cell'>";
-                echo "<p>" . $row['nickname'] . "</p>";
+                echo "<p><i class='fas fa-user'></i> " . $row['nickname'] . "</p>";
                 echo "</div>";
                 echo "<div class='table-cell'>";
-                echo "<button class='action-button' onclick='showComments($advertId)'>Yorumları Gör</button>";
+                echo "<button class='action-button' onclick='toggleComments($advertId)'>Yorumları Gör/Gizle</button>";
+                echo "<button class='action-button' onclick='showCommentForm($advertId)'>Yorum Yap</button>";
                 echo "</div>";
                 echo "</div>";
-                echo "<div id='comments-$advertId' class='comments'></div>";
+                echo "<div id='comments-$advertId' class='comments' style='display: none;'>";
+
+                $comments_conn = new mysqli($servername, $username, $password, $dbname);
+
+                $comments_sql = "SELECT * FROM yorumlar WHERE ilanid = $advertId";
+                $comments_result = $comments_conn->query($comments_sql);
+
+                if ($comments_result->num_rows > 0) {
+                    echo "<div class='comment-box'>";
+                    while ($comments_row = $comments_result->fetch_assoc()) {
+                        echo "<div class='comment'>";
+                        echo "<p class='comment-text'>" . $comments_row['message'] . "</p>";
+                        echo "<p class='comment-author'><i class='fas fa-user'></i> " . $comments_row['username'] . "</p>";
+                        echo "</div>";
+                    }
+                    echo "</div>";
+                } else {
+                    echo "<p>Hiç yorum bulunamadı.</p>";
+                }
+                $comments_conn->close();
+
+                echo "</div>";
+                echo "<div id='comment-form-$advertId' class='comment-form' style='display: none;'>";
+                echo "<form action='" . route('yorum.store') . "' method='post'>";
+                echo csrf_field();
+                echo "<input type='hidden' name='ilanid' value='$advertId'>";
+                echo "<textarea name='message' placeholder='Yorumunuzu girin' rows='4' cols='50'></textarea>";
+                echo "<button type='submit'>Gönder</button>";
+                echo "</form>";
+                echo "</div>";
                 echo "<div class='table-space'></div>";
             }
         }
         $conn->close();
         ?>
+
+        <style>
+            .table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            .table-row {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-bottom: 1px solid #ccc;
+                padding: 10px 0;
+            }
+
+            .table-cell {
+                flex: 1;
+            }
+
+            .table-cell p {
+                font-size: 16px;
+                margin: 0;
+            }
+
+            .action-button {
+                background-color: #f4d03f;
+                color: #333;
+                border: none;
+                padding: 5px 10px;
+                font-size: 14px;
+                cursor: pointer;
+            }
+
+            .comments {
+                margin-top: 10px;
+                display: none;
+            }
+
+            .comment-box {
+                border: 1px solid #f4d03f;
+                padding: 10px;
+                margin-top: 10px;
+                background-color: #fef9e7;
+            }
+
+            .comment {
+                margin-bottom: 10px;
+            }
+
+            .comment-text {
+                font-size: 14px;
+                margin-bottom: 5px;
+            }
+
+            .comment-author {
+                font-size: 12px;
+                color: #999;
+            }
+
+            .comment-form {
+                margin-top: 10px;
+                display: none;
+            }
+
+            .comment-form textarea {
+                width: 100%;
+                height: 80px;
+                resize: none;
+            }
+        </style>
+
+        <script>
+            function toggleComments(advertId) {
+                var commentsDiv = document.getElementById('comments-' + advertId);
+                if (commentsDiv.style.display === 'none') {
+                    commentsDiv.style.display = 'block';
+                } else {
+                    commentsDiv.style.display = 'none';
+                }
+            }
+
+            function showCommentForm(advertId) {
+                var commentFormDiv = document.getElementById('comment-form-' + advertId);
+                if (commentFormDiv.style.display === 'none') {
+                    commentFormDiv.style.display = 'block';
+                } else {
+                    commentFormDiv.style.display = 'none';
+                }
+            }
+        </script>
         </tbody>
     </table>
+
 </div>
 
 <br>
@@ -316,12 +441,23 @@
 <script type="text/javascript" src="{{asset('/')}}assets2/js/templatemo-script.js"></script>
 <script>
 
-    function showComments(advertId) {
-        var commentsDiv = document.getElementById("comments-" + advertId);
+    /*function toggleComments(advertId) {
+        var comments = document.getElementById('comments-' + advertId);
+        var commentForm = document.getElementById('comment-form-' + advertId);
 
-        var commentsContent = "<h3>Yorumlar</h3><ul><li>Yorum 1</li><li>Yorum 2</li></ul>";
-        commentsDiv.innerHTML = commentsContent;
+        if (comments.style.display === 'none') {
+            comments.style.display = 'block';
+        } else {
+            comments.style.display = 'none';
+        }
+
+        commentForm.style.display = 'none';
     }
+
+    function showCommentForm(advertId) {
+        var commentForm = document.getElementById('comment-form-' + advertId);
+        commentForm.style.display = 'block';
+    }*/
 
 
     $(function() {

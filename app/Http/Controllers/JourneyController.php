@@ -10,19 +10,14 @@ use Illuminate\Support\Facades\Auth;
 
 class JourneyController extends Controller
 {
-    public function index()
-    {
-        $adverts = Journey::all();
-
-        return view('index', compact('adverts'));
-    }
 
     public function create()
     {
         $cities = City::all();
         $cars = Car::all();
+        $user = auth()->user();
 
-        return view('addjourney', compact('cities', 'cars'));
+        return view('addjourney', compact('cities', 'cars','user'));
     }
 
     public function store(Request $request)
@@ -33,7 +28,6 @@ class JourneyController extends Controller
             'when' => 'required',
             'car' => 'required',
             'price' => 'required',
-            'nickname' => '{{auth()->user()->nickname}}'
         ]);
 
         if (Auth::check()) {
@@ -43,6 +37,18 @@ class JourneyController extends Controller
         Journey::create($validatedData);
 
         return redirect('/addjourney')->with('success', 'İlan başarıyla oluşturuldu.');
+    }
+    public function delete_advert($advertId) {
+
+        $advert = Journey::find($advertId);
+        if ($advert) {
+            $advert->delete();
+
+            return redirect()->back()->with('success', 'İlan başarıyla silindi.');
+        } else {
+
+            return redirect()->back()->with('error', 'İlan bulunamadı.');
+        }
     }
 }
 

@@ -12,7 +12,57 @@
     <link href="{{asset('/')}}assets2/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
     <link href="{{asset('/')}}assets2/css/flexslider.css" rel="stylesheet">
     <link href="{{asset('/')}}assets2/css/templatemo-style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
 
+
+    <style>
+    .table-container {
+        max-width: 700px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #f5e842;
+        border-radius: 5px;
+        overflow: hidden;
+        background-color: #ffffcc;
+    }
+
+    .table-wrapper {
+        max-height: 300px;
+        overflow-y: auto;
+        margin-top: 10px;
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .table-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid #ccc;
+        padding: 10px;
+    }
+
+    .table-cell {
+        flex-basis: 20%;
+    }
+
+    .delete-button {
+        background-color: #ff0000;
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+    }
+
+    .delete-button:hover {
+        background-color: #cc0000;
+    }
+
+
+</style>
 
 </head>
 <body class="tm-gray-bg">
@@ -122,7 +172,67 @@
         <br>
         <br>
         <br>
-        <br>
+<center>
+    <h1>YOLCULUK SİL</h1>
+</center>
+<br>
+<br>
+
+<div class="table-container">
+    <h2 class="table-title">İlanlar</h2>
+    <div class="table-wrapper">
+        <table class="table">
+            <tbody>
+            <?php
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $dbname = "benlegez";
+
+            $conn = new mysqli($servername, $username, $password, $dbname);
+
+            $sql = "SELECT * FROM advert";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    if($row['nickname'] == auth()->user()->nickname){
+                        $advertId = $row['id'];
+                        echo "<div class='table-row'>";
+                        echo "<div class='table-cell'>";
+                        echo "<p>" . $row['fromwhere'] . " - " . $row['towhere'] . "</p>";
+                        echo "<p>" . $row['when'] . "</p>";
+                        echo "</div>";
+                        echo "<div class='table-cell'>";
+                        echo "<p><i class='fas fa-car'></i> " . $row['car'] . " </p>";
+                        echo "</div>";
+                        echo "<div class='table-cell'>";
+                        echo "<p>" . $row['price'] . "$</p>";
+                        echo "</div>";
+                        echo "<div class='table-cell'>";
+                        echo "<p><i class='fas fa-user'></i> " . $row['nickname'] . "</p>";
+                        echo "</div>";
+                        echo "<div class='table-cell'>";
+                        echo "<form action=". route('advert.delete', ['advertId' => $advertId]) ." method='POST'>";
+                        echo csrf_field();
+                        echo "<input type='hidden' name='advert_id' value='" . $advertId . "'>";
+                        echo "<button type='submit' class='delete-button'>İlanı Sil</button>";
+                        echo "</form>";
+                        echo "</div>";
+                        echo "</div>";
+                    }
+                }
+            }
+            $conn->close();
+            ?>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
         <br>
         <br>
         <br>
@@ -158,7 +268,7 @@
                 </div>
             </div>
         </footer>
-        <script type="text/javascript" src="{{}}assets2/js/jquery-1.11.2.min.js"></script>
+        <script type="text/javascript" src="assets2/js/jquery-1.11.2.min.js"></script>
         <script type="text/javascript" src="assets2/js/moment.js"></script>
         <script type="text/javascript" src="assets2/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="assets2/js/bootstrap-datetimepicker.min.js"></script>
@@ -170,6 +280,7 @@
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
 
         <script type="text/javascript">
+
             $(document).ready(function() {
                 $('#datetimepicker1').datetimepicker({
                     format: 'DD-MM-YYYY',

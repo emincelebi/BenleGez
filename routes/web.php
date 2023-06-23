@@ -3,8 +3,10 @@
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\JourneyController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\YorumController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Gate;
 
@@ -110,6 +112,13 @@ Route::post('account', [UserController::class, 'updateAccount'])->name('update-a
 
 Route::get('/index', [JourneyController::class, 'index'])->name('advert.index');
 Route::post('/index', [JourneyController::class, 'store'])->name('advert.store');
+
+
+Route::get('/index', [YorumController::class, 'index'])->name('yorum.index');
+Route::post('/index', [YorumController::class, 'store'])->name('yorum.store');
+Route::get('/index/{advertId}', [YorumController::class,'showComments']);
+Route::delete('/adverts/{advert}', [JourneyController::class,'destroy'])->name('advert.destroy');
+Route::post('/addjourney/{advertId}', [JourneyController::class,'delete_advert'])->name('advert.delete');
 
 
 

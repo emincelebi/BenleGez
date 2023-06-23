@@ -17,7 +17,7 @@ class User extends Authenticatable
         'password',
         'gender',
         'role',
-        'photo_path', // Yeni eklenen sütun
+        'photo_path', 
     ];
 
     protected $hidden = [
