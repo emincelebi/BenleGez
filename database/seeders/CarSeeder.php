@@ -7,11 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 class CarSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+
     public function run()
     {
         $popularCars = [
@@ -44,8 +40,6 @@ class CarSeeder extends Seeder
             'Toyota',
             'Volkswagen',
             'Volvo',
-
-
         ];
 
         foreach ($popularCars as $name) {

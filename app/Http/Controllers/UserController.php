@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Illuminate\Validation\Rule;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class UserController extends Controller
@@ -39,23 +41,42 @@ class UserController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required',
-            'surname'=>'required',
-            'nickname'=>'required',
-            'email' => 'required|email',
+            'surname' => 'required',
+            'nickname' => [
+                'required',
+                Rule::unique('users', 'nickname')->ignore(Auth::id())
+            ],
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('users', 'email')->ignore(Auth::id())
+            ],
             'password' => 'required|min:8',
             'gender' => 'required'
         ]);
 
-        $user = User::create([
-            'name' => $validatedData['name'],
-            'surname'=>$validatedData['surname'],
-            'nickname'=>$validatedData['nickname'],
-            'email' => $validatedData['email'],
-            'password' => bcrypt($validatedData['password']),
-            'gender' => $validatedData['gender']
-        ]);
+        try {
+            $user = User::create([
+                'name' => $validatedData['name'],
+                'surname' => $validatedData['surname'],
+                'nickname' => $validatedData['nickname'],
+                'email' => $validatedData['email'],
+                'password' => bcrypt($validatedData['password']),
+                'gender' => $validatedData['gender']
+            ]);
 
-        return redirect('/register')->with('success', 'Yeni üye kaydedildi.');
+            return redirect('/')->with('success', 'Yeni üye kaydedildi.');
+        } catch (QueryException $e) {
+            $errorCode = $e->errorInfo[1];
+
+            if ($errorCode == 1062) { // Duplicate entry error code
+                $errorMessage = 'Bu kullanıcı adı veya e-posta zaten kullanılmaktadır.';
+            } else {
+                $errorMessage = 'Bir hata oluştu. Lütfen tekrar deneyin.';
+            }
+
+            return redirect()->back()->withInput()->withErrors(['error' => $errorMessage]);
+        }
     }
 
 
@@ -68,7 +89,7 @@ class UserController extends Controller
             if ($user->isAdmin()) {
                 return redirect()->route('admin.panel');
             } else {
-                return redirect()->route('home');
+                return view('account');
             }
         } else {
             return redirect()->back()->withInput()->withErrors(['name' => 'Geçersiz kullanıcı adı veya şifre']);

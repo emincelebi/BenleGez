@@ -12,7 +12,64 @@
     <link href="{{asset('/')}}assets2/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
     <link href="{{asset('/')}}assets2/css/flexslider.css" rel="stylesheet">
     <link href="{{asset('/')}}assets2/css/templatemo-style.css" rel="stylesheet">
+    <style>
+        .table-container {
+            background-color: #f5f5f5;
+            color: #333;
+            padding: 10px;
+            border-radius: 4px;
+            width: 80%;
+            margin: 0 auto;
+        }
 
+
+        .table-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table-row {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .table-cell {
+            flex: 1;
+            padding: 10px;
+        }
+
+        .table-cell p {
+            margin: 0;
+        }
+
+        .action-button {
+            display: inline-block;
+            padding: 6px 12px;
+            background-color: #555;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .table-space {
+            height: 10px; /* Boşluk yüksekliği */
+        }
+        .comments {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+        }
+
+
+    </style>
 
 </head>
 <body class="tm-gray-bg">
@@ -80,44 +137,28 @@
         <div class="col-md-12">
             <!-- Nav tabs -->
             <div class="tm-home-box-1">
-                <ul class="nav nav-tabs tm-white-bg" role="tablist" id="hotelCarTabs">
-                    <li role="presentation" class="active">
-                        <a href="#hotel" aria-controls="hotel" role="tab" data-toggle="tab">TEK YÖN</a>
-                    </li>
-                    <li role="presentation">
-                        <a href="#car" aria-controls="car" role="tab" data-toggle="tab">GİDİŞ -DÖNÜŞ</a>
-                    </li>
-                </ul>
-
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane fade in active tm-white-bg" id="hotel">
                         <div class="tm-search-box effect2">
-                            <form action="#" method="post" class="hotel-search-form">
-                                <div class="tm-form-inner">
-                                    <div class="form-group">
-                                        <select class="form-control">
-                                            <option value="">-- Nereden -- </option>
-                                            <option value="istanbul">İstanbul</option>
-                                            <option value="ankara">Ankara</option>
-                                            <option value="imzir">İzmir</option>
-                                            <option value="elazig">Elazığ</option>
-                                            <option value="bingol">Bingöl</option>
-                                        </select>
-                                    </div>
+                            <form action="{{ route('index.store') }}" method="post" class="hotel-search-form">
+                            <div class="tm-form-inner">
+                                <select id="city" name="fromwhere" class="form-control" required>
+                                    @foreach ($cities as $city)
+                                        <option value="{{ $city->name }}">{{ $city->name }}</option>
+                                    @endforeach
+                                </select>
+                                    <br>
                                     <div class="form-group margin-bottom-0">
-                                        <select class="form-control">
-                                            <option value="">-- Nereye -- </option>
-                                            <option value="istanbul">İstanbul</option>
-                                            <option value="ankara">Ankara</option>
-                                            <option value="imzir">İzmir</option>
-                                            <option value="elazig">Elazığ</option>
-                                            <option value="bingol">Bingöl</option>
+                                        <select id="city" name="towhere" class="form-control" required>
+                                            @foreach ($cities as $city)
+                                                <option value="{{ $city->name }}">{{ $city->name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <div class='input-group date' id='datetimepicker1'>
-                                            <input type='text' class="form-control" placeholder="Gidiş Tarihi" />
+                                            <input type='text' class="form-control" id="departureDate" placeholder="Gidiş Tarihi" />
                                             <span class="input-group-addon">
 							                        <span class="fa fa-calendar"></span>
 							                    </span>
@@ -130,59 +171,62 @@
                             </form>
                         </div>
                     </div>
-                    <div role="tabpanel" class="tab-pane fade tm-white-bg" id="car">
-                        <div class="tm-search-box effect2">
-                            <form action="#" method="post" class="hotel-search-form">
-                                <div class="tm-form-inner">
-                                    <div class="form-group">
-                                        <select class="form-control">
-                                            <option value="">-- Nereden -- </option>
-                                            <option value="istanbul">İstanbul</option>
-                                            <option value="ankara">Ankara</option>
-                                            <option value="imzir">İzmir</option>
-                                            <option value="elazig">Elazığ</option>
-                                            <option value="bingol">Bingöl</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <select class="form-control">
-                                            <option value="">-- Nereye -- </option>
-                                            <option value="istanbul">İstanbul</option>
-                                            <option value="ankara">Ankara</option>
-                                            <option value="imzir">İzmir</option>
-                                            <option value="elazig">Elazığ</option>
-                                            <option value="bingol">Bingöl</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class='input-group date-time' id='datetimepicker3'>
-                                            <input type='text' class="form-control" placeholder="Gidiş Tarihi" />
-                                            <span class="input-group-addon">
-							                        <span class="fa fa-calendar"></span>
-							                    </span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class='input-group date-time' id='datetimepicker4'>
-                                            <input type='text' class="form-control" placeholder="Dönüş Tarihi" />
-                                            <span class="input-group-addon">
-							                        <span class="fa fa-calendar"></span>
-							                    </span>
-                                        </div>
-                                    </div>
 
-                                </div>
-                                <div class="form-group tm-yellow-gradient-bg text-center">
-                                    <button type="submit" name="submit" class="tm-yellow-btn">Yolculuk Ara</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+<div class="table-container">
+    <h2 class="table-title">İlanlar</h2>
+    <table class="table">
+        <tbody>
+        <?php
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "benlegez";
+
+        $conn = new mysqli($servername, $username, $password, $dbname);
+
+        $sql = "SELECT * FROM advert";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $advertId = $row['id'];
+                echo "<div class='table-row'>";
+                echo "<div class='table-cell'>";
+                echo "<p>" . $row['fromwhere'] . " - " . $row['towhere'] . "</p>";
+                echo "<p>" . $row['when'] . "</p>";
+                echo "</div>";
+                echo "<div class='table-cell'>";
+                echo "<p>" . $row['car'] . "</p>";
+                echo "</div>";
+                echo "<div class='table-cell'>";
+                echo "<p>" . $row['price'] . "</p>";
+                echo "</div>";
+                echo "<div class='table-cell'>";
+                echo "<p>" . $row['nickname'] . "</p>";
+                echo "</div>";
+                echo "<div class='table-cell'>";
+                echo "<button class='action-button' onclick='showComments($advertId)'>Yorumları Gör</button>";
+                echo "</div>";
+                echo "</div>";
+                echo "<div id='comments-$advertId' class='comments'></div>";
+                echo "<div class='table-space'></div>";
+            }
+        }
+        $conn->close();
+        ?>
+        </tbody>
+    </table>
+</div>
+
+<br>
+<br>
+<br>
+<br>
 
 <!-- white bg -->
 <section class="tm-white-bg section-padding-bottom">
@@ -272,6 +316,14 @@
 <script type="text/javascript" src="{{asset('/')}}assets2/js/templatemo-script.js"></script>
 <script>
 
+    function showComments(advertId) {
+        var commentsDiv = document.getElementById("comments-" + advertId);
+
+        var commentsContent = "<h3>Yorumlar</h3><ul><li>Yorum 1</li><li>Yorum 2</li></ul>";
+        commentsDiv.innerHTML = commentsContent;
+    }
+
+
     $(function() {
 
         $('#hotelCarTabs a').click(function (e) {
@@ -279,8 +331,10 @@
             $(this).tab('show')
         })
 
-        $('.date').datetimepicker({
-            format: 'MM/DD/YYYY'
+        $('#datetimepicker1').datetimepicker({
+            format: 'DD-MM-YYYY',
+            minDate: moment().startOf('day'),
+            useCurrent: false
         });
         $('.date-time').datetimepicker();
 

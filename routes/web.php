@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\CityController;
 use App\Http\Controllers\ContactsController;
+use App\Http\Controllers\JourneyController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CarController;
 use Illuminate\Support\Facades\Route;
@@ -24,7 +26,7 @@ Route::get('/home', function () {
     } else {
         return view('index');
     }
-})->name('home');
+})->name('index');
 
 Route::get('/contact', [ContactsController::class, 'create']);
 
@@ -90,11 +92,24 @@ Route::get('user/logout', [UserController::class, 'logout'])->name('user.logout'
 Route::get('/contact', [ContactsController::class, 'getContactForm']);
 Route::get('/profile/photo', [UserController::class, 'getProfilePhoto'])->name('get.profile.photo');
 Route::get('/edit-account', [CarController::class, 'getCars'])->name('edit-account');
+
 Route::get('/delete-account', [UserController::class, 'deleteAccount'])->name('delete-account');
 Route::post('/update-account', function () {
     return redirect()->route('account')->with('success', 'Hesap bilgileri güncellendi');
 })->name('update-account');
+
+Route::get('/addjourney', [JourneyController::class, 'create'])->name('advert.create');
+Route::post('/addjourney', [JourneyController::class, 'store'])->name('advert.store');
+Route::get('/home', [CityController::class, 'create'])->name('index.create');
+Route::post('/home', [CityController::class, 'store'])->name('index.store');
 Route::post('contact', [ContactsController::class, 'store'])->name('contacts.store');
 Route::post('register', [UserController::class, 'store'])->name('users.store');
 Route::post('auth/login', [UserController::class, 'login'])->name('users.login');
 Route::post('account', [UserController::class, 'updateAccount'])->name('update-account');
+
+
+Route::get('/index', [JourneyController::class, 'index'])->name('advert.index');
+Route::post('/index', [JourneyController::class, 'store'])->name('advert.store');
+
+
+
