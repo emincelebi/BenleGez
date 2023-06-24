@@ -322,6 +322,10 @@
                 height: 80px;
                 resize: none;
             }
+            .action-button.join-button {
+                background-color: #28a745;
+                color: #fff;
+            }
         </style>
 
         <script>
@@ -342,6 +346,7 @@
                     commentFormDiv.style.display = 'none';
                 }
             }
+
         </script>
         </tbody>
     </table>

@@ -51,6 +51,9 @@
                 <li>
                     <a  href="{{'table'}}"><i class="fa fa-edit fa-3x"></i>Mesajlar</a>
                 </li>
+                <li>
+                    <a  href="{{'ilanlar'}}"><i class="fa fa-bullhorn fa-3x"></i>İlanlar</a>
+                </li>
             </ul>
         </div>
     </nav>

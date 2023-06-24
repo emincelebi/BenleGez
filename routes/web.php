@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\JourneyController;
@@ -78,6 +79,46 @@ Route::prefix('/admin')->group(function () {
             return view('errors/unauthorized');
         }
     })->name('admin.ui');
+
+    Route::get('/add', function () {
+        if (Gate::allows('access-admin-panel')) {
+            return view('admin.add');
+        } else {
+            return view('errors/unauthorized');
+        }
+    })->name('admin.add');
+
+    Route::get('/edit-admin', function () {
+        if (Gate::allows('access-admin-panel')) {
+            return view('admin.edit-admin');
+        } else {
+            return view('errors/unauthorized');
+        }
+    })->name('admin.edit-admin');
+
+    Route::get('/delete-admin', function () {
+        if (Gate::allows('access-admin-panel')) {
+            return view('admin.delete-admin');
+        } else {
+            return view('errors/unauthorized');
+        }
+    })->name('admin.delete-admin');
+
+    Route::get('/ilanlar', function () {
+        if (Gate::allows('access-admin-panel')) {
+            return view('admin.ilanlar');
+        } else {
+            return view('errors/unauthorized');
+        }
+    })->name('admin.ilanlar');
+
+    Route::get('/delete-ilan', function () {
+        if (Gate::allows('access-admin-panel')) {
+            return view('admin.delete-ilan');
+        } else {
+            return view('errors/unauthorized');
+        }
+    })->name('admin.delete-ilan');
 });
 
 Route::prefix('/auth')->group(function () {
@@ -108,6 +149,8 @@ Route::post('contact', [ContactsController::class, 'store'])->name('contacts.sto
 Route::post('register', [UserController::class, 'store'])->name('users.store');
 Route::post('auth/login', [UserController::class, 'login'])->name('users.login');
 Route::post('account', [UserController::class, 'updateAccount'])->name('update-account');
+Route::post('admin/edit-admin', [AdminController::class, 'updateAccount'])->name('admin-update');
+Route::post('/admin/add', [AdminController::class, 'store'])->name('store.admin');
 
 
 Route::get('/index', [JourneyController::class, 'index'])->name('advert.index');
@@ -119,6 +162,10 @@ Route::post('/index', [YorumController::class, 'store'])->name('yorum.store');
 Route::get('/index/{advertId}', [YorumController::class,'showComments']);
 Route::delete('/adverts/{advert}', [JourneyController::class,'destroy'])->name('advert.destroy');
 Route::post('/addjourney/{advertId}', [JourneyController::class,'delete_advert'])->name('advert.delete');
+Route::post('admin/delete-admin', [AdminController::class,'deleteAdmin'])->name('delete-admin');
+Route::post('admin/ilanlar', [AdminController::class,'deleteIlan'])->name('delete-ilan');
+
+
 
 
 

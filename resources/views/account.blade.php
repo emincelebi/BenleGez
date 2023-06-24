@@ -108,12 +108,6 @@
                 {{auth()->user()->car ?? "-"}}
             </th>
         </tr>
-        <tr>
-            <th scope="col">Yaptığım Seyahat Sayısı</th>
-            <th>
-                {{auth()->user()->travelCount}}
-            </th>
-        </tr>
         </thead>
     </table>
 </center>
