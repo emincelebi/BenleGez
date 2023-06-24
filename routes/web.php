@@ -4,7 +4,6 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\JourneyController;
-use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\YorumController;
@@ -131,6 +130,8 @@ Route::prefix('/auth')->group(function () {
     })->name('auth.register');
 });
 
+Route::get('/home', [CityController::class, 'create'])->name('index.create');
+Route::post('/home', [CityController::class, 'store'])->name('index.store');
 Route::get('user/logout', [UserController::class, 'logout'])->name('user.logout');
 Route::get('/contact', [ContactsController::class, 'getContactForm']);
 Route::get('/profile/photo', [UserController::class, 'getProfilePhoto'])->name('get.profile.photo');
@@ -143,8 +144,7 @@ Route::post('/update-account', function () {
 
 Route::get('/addjourney', [JourneyController::class, 'create'])->name('advert.create');
 Route::post('/addjourney', [JourneyController::class, 'store'])->name('advert.store');
-Route::get('/home', [CityController::class, 'create'])->name('index.create');
-Route::post('/home', [CityController::class, 'store'])->name('index.store');
+
 Route::post('contact', [ContactsController::class, 'store'])->name('contacts.store');
 Route::post('register', [UserController::class, 'store'])->name('users.store');
 Route::post('auth/login', [UserController::class, 'login'])->name('users.login');
@@ -164,8 +164,5 @@ Route::delete('/adverts/{advert}', [JourneyController::class,'destroy'])->name('
 Route::post('/addjourney/{advertId}', [JourneyController::class,'delete_advert'])->name('advert.delete');
 Route::post('admin/delete-admin', [AdminController::class,'deleteAdmin'])->name('delete-admin');
 Route::post('admin/ilanlar', [AdminController::class,'deleteIlan'])->name('delete-ilan');
-
-
-
 
 

@@ -152,7 +152,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group margin-bottom-0">
                                         <select id="towhere" name="towhere" class="form-control" required>
                                             @foreach ($cities as $city)
                                                 <option value="{{ $city->name }}">{{ $city->name }}</option>

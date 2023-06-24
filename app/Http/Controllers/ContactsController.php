@@ -42,14 +42,21 @@ class ContactsController extends Controller
         return redirect('/contact')->with('success', 'Contact created successfully.');
     }
 
-    public function getContactForm()
+    public function getContactForm(Request $request)
     {
         $user = Auth::user();
-
-        return view('contact', [
-            'name' => $user->name,
-            'email' => $user->email,
-        ]);
+        if($user){
+            return view('contact', [
+                'name' => $user->name,
+                'email' => $user->email,
+            ]);
+        }
+        else{
+            return view('contact', [
+                'name' => $request->name,
+                'email' => $request->email,
+            ]);
+        }
     }
 
 }

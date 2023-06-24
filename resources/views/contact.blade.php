@@ -100,10 +100,10 @@
                 @csrf
                 <div class="col-lg-12 col-md-12 tm-contact-form-input">
                     <div class="form-group">
-                        <input type="text" id="contact_name" class="form-control" name="name" value="{{ auth()->user()->name }}" placeholder="AD" />
+                        <input type="text" id="contact_name" class="form-control" name="name" value="{{ auth()->check() ? auth()->user()->name : ''}}" placeholder="AD" />
                     </div>
                     <div class="form-group">
-                        <input type="email" id="contact_email" class="form-control" name="email" value="{{ auth()->user()->email }}" placeholder="EMAIL" />
+                        <input type="email" id="contact_email" class="form-control" name="email" value="{{ auth()->check() ? auth()->user()->email : '' }}" placeholder="EMAIL" />
                     </div>
                     <div class="form-group">
                         <input type="text" id="contact_subject" class="form-control" name="subject" placeholder="KONU" />

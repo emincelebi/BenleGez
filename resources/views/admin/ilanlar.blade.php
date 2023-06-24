@@ -66,7 +66,7 @@
             border-radius: 4px;
         }
         .table-space {
-            height: 10px; 
+            height: 10px;
         }
         .comments {
             margin-top: 10px;
