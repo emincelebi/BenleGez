@@ -37,8 +37,6 @@
                 <li class="text-center">
                     <img src="{{asset('/')}}assets/img/find_user.png" class="user-image img-responsive"/>
                 </li>
-
-
                 <li>
                     <a   href="{{'panel'}}"><i class="fa fa-dashboard fa-3x"></i>Ana Panel</a>
                 </li>
@@ -47,6 +45,9 @@
                 </li>
                 <li  >
                     <a  href="{{'table'}}"><i class="fa fa-edit fa-3x"></i>Mesajlar</a>
+                </li>
+                <li>
+                    <a  href="{{'ilanlar'}}"><i class="fa fa-bullhorn fa-3x"></i>İlanlar</a>
                 </li>
             </ul>
             </li>
@@ -67,9 +68,9 @@
                     <br>
                     <br>
                     <center>
-                        <button type="button" class="btn btn-success">Kullanıcı Ekle</button>
-                        <button type="button" class="btn btn-warning">Kullanıcı Güncelle</button>
-                        <button type="button" class="btn btn-danger">Kullanıcı Sil</button>
+                        <a href="{{'add'}}" class="btn btn-success">Admin Ekle</a>
+                        <a href="{{'edit-admin'}}" class="btn btn-warning">Admin Güncelle</a>
+                        <a href="{{'delete-admin'}}" class="btn btn-danger">Admin/Kullanıcı Sil</a>
                     </center>
                     <br>
                     <br>
@@ -82,11 +83,11 @@
                             <th scope="col">Kullanıcı Adı</th>
                             <th scope="col">E-mail</th>
                             <th scope="col">Cinsiyet</th>
+                            <th scope="col">Rol</th>
                         </tr>
                         </thead>
                         <tbody>
                         <?php
-
                         $host = 'localhost';
                         $dbname = 'benlegez';
                         $username = 'root';
@@ -94,27 +95,46 @@
 
                         $dsn = "mysql:host=$host;dbname=$dbname;charset=utf8mb4";
 
-                            $db = new PDO($dsn, $username, $password);
-                            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                        $db = new PDO($dsn, $username, $password);
+                        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                            $query = "SELECT * FROM users";
-                            $stmt = $db->prepare($query);
-                            $stmt->execute();
-                            $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                        $adminQuery = "SELECT * FROM users WHERE role = 'admin'";
+                        $adminStmt = $db->prepare($adminQuery);
+                        $adminStmt->execute();
+                        $admins = $adminStmt->fetchAll(PDO::FETCH_ASSOC);
 
-                            foreach ($users as $user) {
-                                echo "<tr>";
-                                echo "<th scope='row'>" . $user['id'] . "</th>";
-                                echo "<td>" . $user['name'] . "</td>";
-                                echo "<td>" . $user['surname'] . "</td>";
-                                echo "<td>" . $user['nickname'] . "</td>";
-                                echo "<td>" . $user['email'] . "</td>";
-                                echo "<td>" . $user['gender'] . "</td>";
-                                echo "</tr>";
-                            }
+                        $userQuery = "SELECT * FROM users WHERE role = 'user'";
+                        $userStmt = $db->prepare($userQuery);
+                        $userStmt->execute();
+                        $users = $userStmt->fetchAll(PDO::FETCH_ASSOC);
+
+                        foreach ($admins as $admin) {
+                            echo "<tr>";
+                            echo "<th scope='row'>" . $admin['id'] . "</th>";
+                            echo "<td>" . $admin['name'] . "</td>";
+                            echo "<td>" . $admin['surname'] . "</td>";
+                            echo "<td>" . $admin['nickname'] . "</td>";
+                            echo "<td>" . $admin['email'] . "</td>";
+                            echo "<td>" . $admin['gender'] . "</td>";
+                            echo "<td>" . $admin['role'] . "</td>";
+                            echo "</tr>";
+                        }
+
+                        foreach ($users as $user) {
+                            echo "<tr>";
+                            echo "<th scope='row'>" . $user['id'] . "</th>";
+                            echo "<td>" . $user['name'] . "</td>";
+                            echo "<td>" . $user['surname'] . "</td>";
+                            echo "<td>" . $user['nickname'] . "</td>";
+                            echo "<td>" . $user['email'] . "</td>";
+                            echo "<td>" . $user['gender'] . "</td>";
+                            echo "<td>" . $user['role'] . "</td>";
+                            echo "</tr>";
+                        }
                         ?>
                         </tbody>
                     </table>
+
                 </div>
             </div>
         </div>

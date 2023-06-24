@@ -12,7 +12,65 @@
     <link href="{{asset('/')}}assets2/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
     <link href="{{asset('/')}}assets2/css/flexslider.css" rel="stylesheet">
     <link href="{{asset('/')}}assets2/css/templatemo-style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
+    <style>
+        .table-container {
+            background-color: #f5f5f5;
+            color: #333;
+            padding: 10px;
+            border-radius: 4px;
+            width: 80%;
+            margin: 0 auto;
+        }
 
+
+        .table-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table-row {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .table-cell {
+            flex: 1;
+            padding: 10px;
+        }
+
+        .table-cell p {
+            margin: 0;
+        }
+
+        .action-button {
+            display: inline-block;
+            padding: 6px 12px;
+            background-color: #555;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .table-space {
+            height: 10px; /* Boşluk yüksekliği */
+        }
+        .comments {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+        }
+
+
+    </style>
 
 </head>
 <body class="tm-gray-bg">
@@ -80,109 +138,225 @@
         <div class="col-md-12">
             <!-- Nav tabs -->
             <div class="tm-home-box-1">
-                <ul class="nav nav-tabs tm-white-bg" role="tablist" id="hotelCarTabs">
-                    <li role="presentation" class="active">
-                        <a href="#hotel" aria-controls="hotel" role="tab" data-toggle="tab">TEK YÖN</a>
-                    </li>
-                    <li role="presentation">
-                        <a href="#car" aria-controls="car" role="tab" data-toggle="tab">GİDİŞ -DÖNÜŞ</a>
-                    </li>
-                </ul>
-
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane fade in active tm-white-bg" id="hotel">
                         <div class="tm-search-box effect2">
-                            <form action="#" method="post" class="hotel-search-form">
+                            <form action="{{ route('index.store') }}" method="post" class="hotel-search-form">
+                                @csrf
                                 <div class="tm-form-inner">
                                     <div class="form-group">
-                                        <select class="form-control">
-                                            <option value="">-- Nereden -- </option>
-                                            <option value="istanbul">İstanbul</option>
-                                            <option value="ankara">Ankara</option>
-                                            <option value="imzir">İzmir</option>
-                                            <option value="elazig">Elazığ</option>
-                                            <option value="bingol">Bingöl</option>
+                                        <select id="fromwhere" name="fromwhere" class="form-control" required>
+                                            @foreach ($cities as $city)
+                                                <option value="{{ $city->name }}">{{ $city->name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
-                                    <div class="form-group margin-bottom-0">
-                                        <select class="form-control">
-                                            <option value="">-- Nereye -- </option>
-                                            <option value="istanbul">İstanbul</option>
-                                            <option value="ankara">Ankara</option>
-                                            <option value="imzir">İzmir</option>
-                                            <option value="elazig">Elazığ</option>
-                                            <option value="bingol">Bingöl</option>
+                                    <div class="form-group">
+                                        <select id="towhere" name="towhere" class="form-control" required>
+                                            @foreach ($cities as $city)
+                                                <option value="{{ $city->name }}">{{ $city->name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <div class='input-group date' id='datetimepicker1'>
-                                            <input type='text' class="form-control" placeholder="Gidiş Tarihi" />
+                                            <input type='text' class="form-control" id="departureDate" name="departureDate" placeholder="Gidiş Tarihi" />
                                             <span class="input-group-addon">
-							                        <span class="fa fa-calendar"></span>
-							                    </span>
+                                                <span class="fa fa-calendar"></span>
+                                                </span>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="form-group tm-yellow-gradient-bg text-center">
-                                    <button type="submit" name="submit" class="tm-yellow-btn">Yolculuk Ara</button>
+                                    <div class="form-group tm-yellow-gradient-bg text-center">
+                                        <button type="submit" name="submit" class="tm-yellow-btn">Yolculuk Ara</button>
+                                    </div>
                                 </div>
                             </form>
-                        </div>
-                    </div>
-                    <div role="tabpanel" class="tab-pane fade tm-white-bg" id="car">
-                        <div class="tm-search-box effect2">
-                            <form action="#" method="post" class="hotel-search-form">
-                                <div class="tm-form-inner">
-                                    <div class="form-group">
-                                        <select class="form-control">
-                                            <option value="">-- Nereden -- </option>
-                                            <option value="istanbul">İstanbul</option>
-                                            <option value="ankara">Ankara</option>
-                                            <option value="imzir">İzmir</option>
-                                            <option value="elazig">Elazığ</option>
-                                            <option value="bingol">Bingöl</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <select class="form-control">
-                                            <option value="">-- Nereye -- </option>
-                                            <option value="istanbul">İstanbul</option>
-                                            <option value="ankara">Ankara</option>
-                                            <option value="imzir">İzmir</option>
-                                            <option value="elazig">Elazığ</option>
-                                            <option value="bingol">Bingöl</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class='input-group date-time' id='datetimepicker3'>
-                                            <input type='text' class="form-control" placeholder="Gidiş Tarihi" />
-                                            <span class="input-group-addon">
-							                        <span class="fa fa-calendar"></span>
-							                    </span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class='input-group date-time' id='datetimepicker4'>
-                                            <input type='text' class="form-control" placeholder="Dönüş Tarihi" />
-                                            <span class="input-group-addon">
-							                        <span class="fa fa-calendar"></span>
-							                    </span>
-                                        </div>
-                                    </div>
 
-                                </div>
-                                <div class="form-group tm-yellow-gradient-bg text-center">
-                                    <button type="submit" name="submit" class="tm-yellow-btn">Yolculuk Ara</button>
-                                </div>
-                            </form>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
 </section>
+<div class="table-container">
+    <h2 class="table-title">İlanlar</h2>
+    <table class="table">
+        <tbody>
+        <?php
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "benlegez";
+
+        $conn = new mysqli($servername, $username, $password, $dbname);
+
+        $sql = "SELECT * FROM advert";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $advertId = $row['id'];
+                echo "<div class='table-row'>";
+                echo "<div class='table-cell'>";
+                echo "<p>" . $row['fromwhere'] . " - " . $row['towhere'] . "</p>";
+                echo "<p>" . $row['when'] . "</p>";
+                echo "</div>";
+                echo "<div class='table-cell'>";
+                echo "<p><i class='fas fa-car'></i> " . $row['car'] . " </p>";
+                echo "</div>";
+                echo "<div class='table-cell'>";
+                echo "<p>" . $row['price'] . "$</p>";
+                echo "</div>";
+                echo "<div class='table-cell'>";
+                echo "<p><i class='fas fa-user'></i> " . $row['nickname'] . "</p>";
+                echo "</div>";
+                echo "<div class='table-cell'>";
+                echo "<button class='action-button' onclick='toggleComments($advertId)'>Yorumları Gör/Gizle</button>";
+                echo "<button class='action-button' onclick='showCommentForm($advertId)'>Yorum Yap</button>";
+                echo "</div>";
+                echo "</div>";
+                echo "<div id='comments-$advertId' class='comments' style='display: none;'>";
+
+                $comments_conn = new mysqli($servername, $username, $password, $dbname);
+
+                $comments_sql = "SELECT * FROM yorumlar WHERE ilanid = $advertId";
+                $comments_result = $comments_conn->query($comments_sql);
+
+                if ($comments_result->num_rows > 0) {
+                    echo "<div class='comment-box'>";
+                    while ($comments_row = $comments_result->fetch_assoc()) {
+                        echo "<div class='comment'>";
+                        echo "<p class='comment-text'>" . $comments_row['message'] . "</p>";
+                        echo "<p class='comment-author'><i class='fas fa-user'></i> " . $comments_row['username'] . "</p>";
+                        echo "</div>";
+                    }
+                    echo "</div>";
+                } else {
+                    echo "<p>Hiç yorum bulunamadı.</p>";
+                }
+                $comments_conn->close();
+
+                echo "</div>";
+                echo "<div id='comment-form-$advertId' class='comment-form' style='display: none;'>";
+                echo "<form action='" . route('yorum.store') . "' method='post'>";
+                echo csrf_field();
+                echo "<input type='hidden' name='ilanid' value='$advertId'>";
+                echo "<textarea name='message' placeholder='Yorumunuzu girin' rows='4' cols='50'></textarea>";
+                echo "<button type='submit'>Gönder</button>";
+                echo "</form>";
+                echo "</div>";
+                echo "<div class='table-space'></div>";
+            }
+        }
+        $conn->close();
+        ?>
+
+        <style>
+            .table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            .table-row {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-bottom: 1px solid #ccc;
+                padding: 10px 0;
+            }
+
+            .table-cell {
+                flex: 1;
+            }
+
+            .table-cell p {
+                font-size: 16px;
+                margin: 0;
+            }
+
+            .action-button {
+                background-color: #f4d03f;
+                color: #333;
+                border: none;
+                padding: 5px 10px;
+                font-size: 14px;
+                cursor: pointer;
+            }
+
+            .comments {
+                margin-top: 10px;
+                display: none;
+            }
+
+            .comment-box {
+                border: 1px solid #f4d03f;
+                padding: 10px;
+                margin-top: 10px;
+                background-color: #fef9e7;
+            }
+
+            .comment {
+                margin-bottom: 10px;
+            }
+
+            .comment-text {
+                font-size: 14px;
+                margin-bottom: 5px;
+            }
+
+            .comment-author {
+                font-size: 12px;
+                color: #999;
+            }
+
+            .comment-form {
+                margin-top: 10px;
+                display: none;
+            }
+
+            .comment-form textarea {
+                width: 100%;
+                height: 80px;
+                resize: none;
+            }
+            .action-button.join-button {
+                background-color: #28a745;
+                color: #fff;
+            }
+        </style>
+
+        <script>
+            function toggleComments(advertId) {
+                var commentsDiv = document.getElementById('comments-' + advertId);
+                if (commentsDiv.style.display === 'none') {
+                    commentsDiv.style.display = 'block';
+                } else {
+                    commentsDiv.style.display = 'none';
+                }
+            }
+
+            function showCommentForm(advertId) {
+                var commentFormDiv = document.getElementById('comment-form-' + advertId);
+                if (commentFormDiv.style.display === 'none') {
+                    commentFormDiv.style.display = 'block';
+                } else {
+                    commentFormDiv.style.display = 'none';
+                }
+            }
+
+        </script>
+        </tbody>
+    </table>
+
+</div>
+
+<br>
+<br>
+<br>
+<br>
 
 <!-- white bg -->
 <section class="tm-white-bg section-padding-bottom">
@@ -272,6 +446,25 @@
 <script type="text/javascript" src="{{asset('/')}}assets2/js/templatemo-script.js"></script>
 <script>
 
+    /*function toggleComments(advertId) {
+        var comments = document.getElementById('comments-' + advertId);
+        var commentForm = document.getElementById('comment-form-' + advertId);
+
+        if (comments.style.display === 'none') {
+            comments.style.display = 'block';
+        } else {
+            comments.style.display = 'none';
+        }
+
+        commentForm.style.display = 'none';
+    }
+
+    function showCommentForm(advertId) {
+        var commentForm = document.getElementById('comment-form-' + advertId);
+        commentForm.style.display = 'block';
+    }*/
+
+
     $(function() {
 
         $('#hotelCarTabs a').click(function (e) {
@@ -279,8 +472,10 @@
             $(this).tab('show')
         })
 
-        $('.date').datetimepicker({
-            format: 'MM/DD/YYYY'
+        $('#datetimepicker1').datetimepicker({
+            format: 'DD-MM-YYYY',
+            minDate: moment().startOf('day'),
+            useCurrent: false
         });
         $('.date-time').datetimepicker();
 

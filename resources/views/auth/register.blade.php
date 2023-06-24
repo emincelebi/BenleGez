@@ -110,6 +110,11 @@
                     </div>
                 </div>
             </div>
+            @error('error')
+            <div class="alert alert-danger" role="alert">
+                {{ $message }}
+            </div>
+        @enderror
         </form>
     </div>
 </div>

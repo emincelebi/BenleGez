@@ -34,12 +34,12 @@ class ContactsController extends Controller
         $contact=Contact::create($validatedData);
 
         if ($contact) {
-            return redirect('/')->with('success', 'Contact created successfully.');
+            return redirect('/contact')->with('success', 'Contact created successfully.');
         } else {
             return redirect()->back()->with('error', 'Failed to create contact.');
         }
 
-        return redirect('/')->with('success', 'Contact created successfully.');
+        return redirect('/contact')->with('success', 'Contact created successfully.');
     }
 
     public function getContactForm()

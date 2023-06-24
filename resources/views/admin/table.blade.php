@@ -50,6 +50,9 @@ font-size: 16px;">&nbsp; <a href="{{ route('user.logout') }}" class="btn btn-dan
                 <li  >
                     <a class="active-menu" href="{{'table'}}"><i class="fa fa-edit fa-3x"></i>Mesajlar</a>
                 </li>
+                <li>
+                    <a  href="{{'ilanlar'}}"><i class="fa fa-bullhorn fa-3x"></i>İlanlar</a>
+                </li>
             </ul>
         </div>
 
